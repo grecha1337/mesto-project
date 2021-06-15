@@ -1,0 +1,16 @@
+.popup__btn {
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
+  min-height: 50px;
+  background-color: #000;
+  border-radius: 2px;
+  width: 100%;
+}
+
+@media screen and (max-width: 550px) {
+  .popup__btn {
+    min-height: 46px;
+  }
+}
