@@ -20,5 +20,6 @@
   .profile__text-profession {
     font-size: 14px;
     line-height: 17px;
+    max-width: 210px;
   }
 }

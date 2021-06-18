@@ -3,6 +3,7 @@
   height: 50px;
   background-image: url(../../../images/add-btn.svg);
   margin-left: auto;
+  border-radius: 2px;
 }
 
 @media screen and (max-width: 735px) {
@@ -12,4 +13,3 @@
     background-size: 16px;
   }
 }
-  

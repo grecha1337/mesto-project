@@ -12,12 +12,12 @@
 
 @media screen and (max-width: 550px) {
   .popup__btn-close {
-    top: -45px;
-    right: 5px;
+    top: -50px;
+    right: -10px;
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 410px) {
   .popup__btn-close {
     top: -50px;
     right: 3px;
