@@ -25,48 +25,6 @@
       <button class="profile__add-btn button" type="button"></button>
     </section>
     <section class="elements">
-      <article class="element">
-        <img class="element__image" alt="Карачаевск" src="images/karachaevsk.png">
-        <div class="element__info">
-          <h2 class="element__title">Карачаевск</h2>
-          <button class="element__btn-like button element__btn-like_active" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__image" alt="Гора Эльбрус" src="images/elbrus.png">
-        <div class="element__info">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__btn-like button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__image" alt="Домбай" src="images/donbay.png">
-        <div class="element__info">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__btn-like button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__image" alt="Домбай" src="images/donbay.png">
-        <div class="element__info">
-          <h2 class="element__title">Домбай</h2>
-          <button class="element__btn-like button" type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__image" alt="Карачаевск" src="images/karachaevsk.png">
-        <div class="element__info">
-          <h2 class="element__title">Карачаевск</h2>
-          <button class="element__btn-like button element__btn-like_active " type="button"></button>
-        </div>
-      </article>
-      <article class="element">
-        <img class="element__image" alt="Гора Эльбрус" src="images/elbrus.png">
-        <div class="element__info">
-          <h2 class="element__title">Гора Эльбрус</h2>
-          <button class="element__btn-like button" type="button"></button>
-        </div>
-      </article>
     </section>
     <div class="popup">
       <div class="popup__container">
@@ -81,10 +39,41 @@
         </form>
       </div>
     </div>
+    <div class="popup popup-place">
+      <div class="popup__container">
+        <button class="popup__btn-close button" type="button"></button>
+        <form class="popup__form" name="edit-profile">
+          <h2 class="popup__title">Новое место</h2>
+          <fieldset class="popup__about-info">
+            <input class="popup__input" placeholder="Название" type="text">
+            <input class="popup__input" placeholder="Ссылка на картинку" type="text">
+            <button class="popup__btn button" type="submit">Сохранить</button>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div class="popup-image">
+      <div class="popup-image__container">
+        <button class="popup-image__btn-close button" type="button"></button>
+        <img class="popup-image__image" src="" alt="">
+        <p class="popup-image__name"></p>
+      </div>
+    </div>
   </main>
   <footer class="footer page__footer">
     <p class="footer__copyright">© 2020 Mesto Russia</p>
   </footer>
+  <template id="element">
+    <article class="element">
+      <img class="element__trash" src="images/trash.svg" alt="помойка">
+      <img class="element__image">
+      <div class="element__info">
+        <h2 class="element__title"></h2>
+        <button class="element__btn-like button" type="button"></button>
+      </div>
+    </article>
+  </template>
+  <script src="js/script.js"></script>
 </body>
 
 </html>
