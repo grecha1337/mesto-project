@@ -1,3 +1,4 @@
+import { enableValidation } from "./validate.js";
 const popup = document.querySelector('.popup');
 const popupBtnClose  = popup.querySelector('.popup__btn-close');
 const popupPlace = document.querySelector('.popup-place');
@@ -141,3 +142,12 @@ popupImageClose.addEventListener('click', function(event){
 
 formElement.addEventListener('submit', formProfileSubmitHandler); 
 formPlaceElement.addEventListener('submit', formPlaceSubmitHandler); 
+
+enableValidation({
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__error_visible",
+});
