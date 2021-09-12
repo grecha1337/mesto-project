@@ -6,17 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <link rel="stylesheet" href="./pages/index.css">
 </head>
 
 <body class="page">
   <header class="header page__header">
-    <img class="header__logo" src="images/logo.svg" alt="лого">
+    <img class="header__logo" src="<%=require('./images/logo.svg')%>" alt="лого">
   </header>
   <main>
     <section class="profile page__profile">
       <div class="profile__avatar-container">
-        <img class="profile__avatar" src="images/avatar.jpg" alt="аватар">
+        <img class="profile__avatar" alt="аватар">
         <button type="button" class="profile__avatar-button"></button>
       </div>
       <div class="profile__info">
@@ -108,12 +107,6 @@
       </div>
     </article>
   </template>
-  <script type="module" src="js/script.js"></script>
-
-  <script type="module" src="js/modal.js"></script>
-  <script type="module" src="js/validate.js"></script>
-  <script type="module" src="js/api.js"></script>
-  <script type="module" src="js/card.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,6 @@
-import { enableValidation } from "./validate.js";
+import '../pages/index.css';
+import {addCard,elements} from './card';
+import { enableValidation } from "./validate";
 import {
   getUser,
   setUserInfo,

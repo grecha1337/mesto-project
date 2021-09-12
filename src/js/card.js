@@ -1,5 +1,5 @@
-import { getInitialCards, deleteCard, like, dislike } from "./api.js";
-import { userId } from "./script.js";
+import { getInitialCards, deleteCard, like, dislike } from "./api";
+import { userId } from "./index";
 
 getInitialCards()
   .then((result) => {
@@ -11,7 +11,7 @@ getInitialCards()
     console.log(err);
   });
 
-const elements = document.querySelector(".elements");
+export const elements = document.querySelector(".elements");
 function renderCard(cardData) {
   const cardTemplate = document.querySelector("#element").content;
   const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
@@ -42,7 +42,7 @@ function renderCard(cardData) {
   return cardElement;
 }
 
-function addCard(cardElement, cardContainer) {
+export function addCard(cardElement, cardContainer) {
   const card = renderCard(cardElement);
   cardContainer.prepend(card);
 }
