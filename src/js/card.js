@@ -1,15 +1,5 @@
-import { getInitialCards, deleteCard, like, dislike } from "./api";
+import { deleteCard, like, dislike } from "./api";
 import { userId } from "./index";
-
-getInitialCards()
-  .then((result) => {
-    result.forEach((item) => {
-      addCard(item, elements);
-    });
-  })
-  .catch((err) => {
-    console.log(err);
-  });
 
 export const elements = document.querySelector(".elements");
 function renderCard(cardData) {
@@ -25,7 +15,6 @@ function renderCard(cardData) {
   cardTitle.textContent = cardData.name;
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
-  console.log(cardData);
   cardLikenQuantity.textContent = cardData.likes.length;
   if (!hasUserCard(userId, cardData.owner._id)) {
     cardTrash.style.display = "none";
