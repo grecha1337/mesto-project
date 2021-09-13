@@ -4,10 +4,10 @@
   "description": "```\r Адаптивная верстка\r Используются :\r - медиа-запросы\r - grid\r - flexbox\r ```",
   "main": "index.js",
   "dependencies": {
-    "core-js": "^3.17.3",
-    "webpack": "^5.52.1"
+    "core-js": "^3.17.3"
   },
   "devDependencies": {
+    "webpack": "^5.52.1",
     "@babel/core": "^7.15.5",
     "@babel/preset-env": "^7.15.6",
     "autoprefixer": "^10.3.4",
