@@ -21,7 +21,7 @@ const hideInputError = (
   errorElement.textContent = "";
 };
 
-const toggleButtonState = (
+export const toggleButtonState = (
   inputList,
   buttonElement,
   { inactiveButtonClass }

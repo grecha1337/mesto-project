@@ -1,8 +1,9 @@
-import '../pages/index.css';
-import {addCard,elements} from './card';
-import { enableValidation } from "./validate";
+import "../pages/index.css";
+import { addCard, elements } from "./card";
+import { enableValidation, toggleButtonState } from "./validate";
 import {
-  getUser,
+  getInitialProfile,
+  getInitialCards,
   setUserInfo,
   createCard,
   changeAvatar,
@@ -15,20 +16,23 @@ const profileTextProfession = document.querySelector(
 );
 const profileAvatar = document.querySelector(".profile__avatar");
 export let userId = null;
-getUser()
-  .then((result) => {
-    profileTextName.textContent = result.name;
-    profileTextProfession.textContent = result.about;
-    profileAvatar.src = result.avatar;
-    userId = result._id;
+
+Promise.all([getInitialProfile(), getInitialCards()])
+  .then(([userData, cardArray]) => {
+    profileTextName.textContent = userData.name;
+    profileTextProfession.textContent = userData.about;
+    profileAvatar.src = userData.avatar;
+    userId = userData._id;
+    cardArray.reverse().forEach((item) => {
+      addCard(item, elements);
+    });
   })
   .catch((err) => {
     console.log(err);
   });
 
-
 /*
-  Обработка форма
+  Обработка форм
 */
 const formUserElement = document.querySelector(".popup__form-profile");
 const nameProfileInput = formUserElement.querySelector(".popup__name-profile");
@@ -43,62 +47,64 @@ const linkImagePlaceInput =
   formPlaceElement.querySelector(".popup__link-place");
 const buttonPlace = formPlaceElement.querySelector(".popup__button-place");
 
-const formAvatarlement = document.querySelector(".popup__form-avatar");
-const linkAvatarInput = formAvatarlement.querySelector(".popup__link-avatar");
-const buttonAvatar = formAvatarlement.querySelector(".popup__button-avatar");
+const formAvatarElement = document.querySelector(".popup__form-avatar");
+const linkAvatarInput = formAvatarElement.querySelector(".popup__link-avatar");
+const buttonAvatar = formAvatarElement.querySelector(".popup__button-avatar");
 
 function formProfileSubmitHandler() {
   buttonProfile.textContent = "Сохранение ...";
-  if (nameProfileInput.value && aboutProfileInput.value) {
-    setUserInfo(nameProfileInput.value, aboutProfileInput.value)
-      .then(() => {
-        profileTextName.textContent = nameProfileInput.value;
-        profileTextProfession.textContent = aboutProfileInput.value;
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        buttonProfile.textContent = "Сохранение";
-        closePopup(popupProfile);
-      });
-  }
+  setUserInfo(nameProfileInput.value, aboutProfileInput.value)
+    .then(() => {
+      profileTextName.textContent = nameProfileInput.value;
+      profileTextProfession.textContent = aboutProfileInput.value;
+      closePopup(popupProfile);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      buttonProfile.textContent = "Сохранение";
+    });
 }
 
 function formPlaceSubmitHandler() {
   buttonPlace.textContent = "Сохранение ...";
-  if (namePlaceInput.value && linkImagePlaceInput.value) {
-    createCard(namePlaceInput.value, linkImagePlaceInput.value)
-      .then((result) => {
-        addCard(result, elements);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        buttonPlace.textContent = "Сохранение";
-        closePopup(popupPlace);
+  createCard(namePlaceInput.value, linkImagePlaceInput.value)
+    .then((result) => {
+      addCard(result, elements);
+      formPlaceElement.reset();
+      toggleButtonState([namePlaceInput, linkImagePlaceInput], buttonPlace, {
+        inactiveButtonClass: "popup__button_disabled",
       });
-  }
+      closePopup(popupPlace);
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+    .finally(() => {
+      buttonPlace.textContent = "Сохранение";
+    });
 }
 
 function formAvatarSubmitHandler() {
   buttonAvatar.textContent = "Сохранение ...";
-  if (linkAvatarInput.value) {
-    changeAvatar(linkAvatarInput.value)
-      .then(() => {
-        profileAvatar.src = linkAvatarInput.value;
-      })
-      .finally(() => {
-        buttonAvatar.textContent = "Сохранение";
-        closePopup(popupAvatar);
+  changeAvatar(linkAvatarInput.value)
+    .then(() => {
+      profileAvatar.src = linkAvatarInput.value;
+      formAvatarElement.reset();
+      toggleButtonState([linkAvatarInput], buttonAvatar, {
+        inactiveButtonClass: "popup__button_disabled",
       });
-  }
+      closePopup(popupAvatar);
+    })
+    .finally(() => {
+      buttonAvatar.textContent = "Сохранение";
+    });
 }
 
 formUserElement.addEventListener("submit", formProfileSubmitHandler);
 formPlaceElement.addEventListener("submit", formPlaceSubmitHandler);
-formAvatarlement.addEventListener("submit", formAvatarSubmitHandler);
+formAvatarElement.addEventListener("submit", formAvatarSubmitHandler);
 
 enableValidation({
   formSelector: ".popup__form",
