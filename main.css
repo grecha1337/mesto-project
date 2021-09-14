@@ -42,6 +42,5 @@
 .popup-image__container{box-shadow:0 0 25px rgba(0,0,0,.15);box-sizing:border-box;position:relative}@media screen and (max-width:550px){.popup-image__container{min-height:322px;min-width:383px;padding:25px 22px}}@media screen and (max-width:410px){.popup-image__container{min-width:283px}}
 .popup-image__image{max-height:75vh;max-width:75vw}
 .popup-image__name{font-size:12px;font-weight:400;line-height:15px;margin:0;padding:7px 0 0}
-.popup-image__btn-close{background-image:url(images/close-btn.80dd003b8ca3c2c17307.svg);background-size:cover;border:none;box-sizing:border-box;height:56px;position:absolute;right:-52px;top:-52px;width:56px}@media screen and (max-width:550px){.popup-image__btn-close{right:10px;top:-37px}}@media screen and (max-width:410px){.popup-image__btn-close{height:34px;right:3px;right:15px;top:-17px;width:34px}}
 .popup_opened{opacity:1;visibility:visible}
 
