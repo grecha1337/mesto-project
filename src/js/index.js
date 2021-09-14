@@ -130,27 +130,29 @@ const popupProfileClose = popupProfile.querySelector(".popup__btn-close");
 const popupPlaceClose = popupPlace.querySelector(".popup__btn-close");
 const popupAvatarClose = popupAvatar.querySelector(".popup__btn-close");
 
-profileAddBtn.addEventListener("click", function (event) {
+profileAddBtn.addEventListener("click", () => {
   openPopup(popupPlace);
 });
 
-profileEditBtn.addEventListener("click", function (event) {
+profileEditBtn.addEventListener("click", () => {
+  nameProfileInput.value = profileTextName.textContent;
+  aboutProfileInput.value = profileTextProfession.textContent;
   openPopup(popupProfile);
 });
 
-avatarButton.addEventListener("click", function (event) {
+avatarButton.addEventListener("click", () => {
   openPopup(popupAvatar);
 });
 
-popupProfileClose.addEventListener("click", function (event) {
+popupProfileClose.addEventListener("click", () => {
   closePopup(popupProfile);
 });
 
-popupPlaceClose.addEventListener("click", function (event) {
+popupPlaceClose.addEventListener("click", () => {
   closePopup(popupPlace);
 });
 
-popupAvatarClose.addEventListener("click", function (event) {
+popupAvatarClose.addEventListener("click", () => {
   closePopup(popupAvatar);
 });
 
