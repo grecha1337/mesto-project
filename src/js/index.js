@@ -125,10 +125,12 @@ const avatarButton = document.querySelector(".profile__avatar-button");
 const popupProfile = document.querySelector(".popup-profile");
 const popupPlace = document.querySelector(".popup-place");
 const popupAvatar = document.querySelector(".popup-avatar");
+const popupImage = document.querySelector(".popup-image");
 
 const popupProfileClose = popupProfile.querySelector(".popup__btn-close");
 const popupPlaceClose = popupPlace.querySelector(".popup__btn-close");
 const popupAvatarClose = popupAvatar.querySelector(".popup__btn-close");
+const popupImageClose = popupImage.querySelector(".popup__btn-close");
 
 profileAddBtn.addEventListener("click", () => {
   openPopup(popupPlace);
@@ -154,6 +156,10 @@ popupPlaceClose.addEventListener("click", () => {
 
 popupAvatarClose.addEventListener("click", () => {
   closePopup(popupAvatar);
+});
+
+popupImageClose.addEventListener("click", () => {
+  closePopup(popupImage);
 });
 
 closePopupOnClickOverlay(".popup");

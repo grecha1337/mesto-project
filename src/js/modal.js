@@ -3,6 +3,16 @@ export function openPopup(element) {
   document.addEventListener("keydown", handleESC);
 }
 
+export function openPopupImage(popupImageSelector, linkImage, nameCard) {
+  const popupImage = document.querySelector(popupImageSelector);
+  const imageElement = popupImage.querySelector(".popup-image__image");
+  const nameElement = popupImage.querySelector(".popup-image__name");
+  imageElement.src = linkImage;
+  imageElement.alr = nameCard;
+  nameElement.textContent = nameCard;
+  openPopup(popupImage)
+}
+
 export function closePopup(element) {
   element.classList.remove("popup_opened");
   document.removeEventListener("keydown", handleESC);

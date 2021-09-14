@@ -1,5 +1,6 @@
 import { deleteCard, like, dislike } from "./api";
 import { userId } from "./index";
+import { openPopupImage } from "./modal";
 
 export const elements = document.querySelector(".elements");
 function renderCard(cardData) {
@@ -15,6 +16,10 @@ function renderCard(cardData) {
   cardTitle.textContent = cardData.name;
   cardImage.src = cardData.link;
   cardImage.alt = cardData.name;
+
+  cardImage.addEventListener("click", () => {
+    openPopupImage(".popup-image", cardData.link, cardData.name);
+  });
   cardLikenQuantity.textContent = cardData.likes.length;
   if (!hasUserCard(userId, cardData.owner._id)) {
     cardTrash.style.display = "none";
