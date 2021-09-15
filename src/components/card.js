@@ -1,5 +1,5 @@
 import { deleteCard, like, dislike } from "./api";
-import { userId } from "./index";
+import { userId } from "../pages/index";
 import { openPopupImage } from "./modal";
 
 export const elements = document.querySelector(".elements");

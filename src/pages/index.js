@@ -1,14 +1,14 @@
 import "../pages/index.css";
-import { addCard, elements } from "./card";
-import { enableValidation, toggleButtonState } from "./validate";
+import { addCard, elements } from "../components/card";
+import { enableValidation, toggleButtonState } from "../components/validate";
 import {
   getInitialProfile,
   getInitialCards,
   setUserInfo,
   createCard,
   changeAvatar,
-} from "./api.js";
-import { closePopup, openPopup, closePopupOnClickOverlay } from "./modal.js";
+} from "../components/api.js";
+import { closePopup, openPopup, closePopupOnClickOverlay } from "../components/modal.js";
 
 const profileTextName = document.querySelector(".profile__text-name");
 const profileTextProfession = document.querySelector(
