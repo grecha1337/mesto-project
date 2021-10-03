@@ -4,11 +4,15 @@ import { enableValidation, toggleButtonState } from "../components/validate";
 import {
   getInitialProfile,
   getInitialCards,
-  setUserInfo,
   createCard,
   changeAvatar,
 } from "../components/api.js";
-import { closePopup, openPopup, closePopupOnClickOverlay } from "../components/modal.js";
+import {
+  closePopup,
+  openPopup,
+  closePopupOnClickOverlay,
+} from "../components/modal.js";
+import { formProfileSubmitHandler } from "../components/profile.js";
 
 const profileTextName = document.querySelector(".profile__text-name");
 const profileTextProfession = document.querySelector(
@@ -51,22 +55,6 @@ const formAvatarElement = document.querySelector(".popup__form-avatar");
 const linkAvatarInput = formAvatarElement.querySelector(".popup__link-avatar");
 const buttonAvatar = formAvatarElement.querySelector(".popup__button-avatar");
 
-function formProfileSubmitHandler() {
-  buttonProfile.textContent = "Сохранение ...";
-  setUserInfo(nameProfileInput.value, aboutProfileInput.value)
-    .then(() => {
-      profileTextName.textContent = nameProfileInput.value;
-      profileTextProfession.textContent = aboutProfileInput.value;
-      closePopup(popupProfile);
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-    .finally(() => {
-      buttonProfile.textContent = "Сохранение";
-    });
-}
-
 function formPlaceSubmitHandler() {
   buttonPlace.textContent = "Сохранение ...";
   createCard(namePlaceInput.value, linkImagePlaceInput.value)
@@ -102,7 +90,16 @@ function formAvatarSubmitHandler() {
     });
 }
 
-formUserElement.addEventListener("submit", formProfileSubmitHandler);
+formUserElement.addEventListener("submit", function () {
+  formProfileSubmitHandler(
+    buttonProfile,
+    nameProfileInput,
+    aboutProfileInput,
+    profileTextName,
+    profileTextProfession,
+    popupProfile
+  );
+});
 formPlaceElement.addEventListener("submit", formPlaceSubmitHandler);
 formAvatarElement.addEventListener("submit", formAvatarSubmitHandler);
 
