@@ -34,12 +34,12 @@
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__fieldset">
             <label class="popup__field">
-              <input class="popup__input popup__name-profile" id="name" required minlength="3" maxlength="40"
+              <input class="popup__input popup__name-profile" id="name" name="username" required minlength="3" maxlength="40"
                 placeholder="Имя" type="text">
               <span class="popup__error name-error"></span>
             </label>
             <label class="popup__field">
-              <input class="popup__input popup__about-profile" id="prof" required minlength="3" maxlength="200"
+              <input class="popup__input popup__about-profile" id="prof" name="userwork" required minlength="3" maxlength="200"
                 placeholder="Профессиональная деятельность" type="text">
               <span class="popup__error prof-error"></span>
             </label>
@@ -55,13 +55,13 @@
           <h2 class="popup__title">Новое место</h2>
           <fieldset class="popup__fieldset">
             <label class="popup__field">
-              <input class="popup__input popup__name-place" id="place" required minlength="3" maxlength="30"
-                placeholder="Название" type="text">
+              <input class="popup__input popup__name-place" id="place" name="placename" required minlength="3"
+                maxlength="30" placeholder="Название" type="text">
               <span class="popup__error place-error"></span>
             </label>
             <label class="popup__field">
-              <input class="popup__input popup__link-place" id="url" required placeholder="Ссылка на картинку"
-                type="url">
+              <input class="popup__input popup__link-place" id="url" name="placelink" required
+                placeholder="Ссылка на картинку" type="url">
               <span class="popup__error url-error"></span>
             </label>
             <button class="popup__button popup__button-place button" type="submit">Сохранить</button>
@@ -76,8 +76,8 @@
           <h2 class="popup__title">Обновить аватар</h2>
           <fieldset class="popup__fieldset">
             <label class="popup__field">
-              <input class="popup__input popup__link-avatar" id="url" required placeholder="Ссылка на аватар"
-                type="url">
+              <input class="popup__input popup__link-avatar" id="url" name="linkname" required
+                placeholder="Ссылка на аватар" type="url">
               <span class="popup__error url-error"></span>
             </label>
             <button class="popup__button popup__button-avatar button" type="submit">Сохранить</button>
@@ -90,6 +90,14 @@
         <button class="popup__btn-close button" type="button"></button>
         <img class="popup-image__image" src="" alt="">
         <p class="popup-image__name"></p>
+      </div>
+    </div>
+    <div class="popup popup__delete-confirm">
+      <div id="conteiner" class="popup__container">
+        <button class="popup__btn-close button" type="button"></button>
+        <h2 class="popup__confirm-text-element">Вы уверены?</h2>
+        <button id="confirm-button" type="click" aria-label="кнопка согласия"
+          class="popup__button popup__confirm-button">Да</button>
       </div>
     </div>
   </main>

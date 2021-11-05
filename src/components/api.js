@@ -1,79 +1,86 @@
-const config = {
-  baseUrl: "https://mesto.nomoreparties.co/v1/plus-cohort-1",
-  headers: {
-    authorization: "9dedcca4-8ae6-4859-924d-49410349cdda",
-    "Content-Type": "application/json",
-  },
-};
+export default class Api {
+  constructor(options) {
+    this.baseUrl = options.baseUrl;
+    this.headers = options.headers;
+  }
 
-function getResponseData(res) {
-  if (!res.ok) {
+  ///запрос на проставление лайка карточке
+  likeAdding(id) {
+    return fetch(`${this.baseUrl}/cards/likes/${id}`, {
+      method: "PUT",
+      headers: this.headers,
+    }).then(this._checkResponse);
+  }
+
+  ///запрос на удаление лайка у карточки
+  likeRemoving(id) {
+    return fetch(`${this.baseUrl}/cards/likes/${id}`, {
+      method: "DELETE",
+      headers: this.headers,
+    }).then(this._checkResponse);
+  }
+
+  ///запрос на удаление карточки
+  cardRemoving(id) {
+    return fetch(`${this.baseUrl}/cards/${id}`, {
+      method: "DELETE",
+      headers: this.headers,
+    }).then(this._checkResponse);
+  }
+
+  ///запрос информации о карточках с сервера
+  getInitialCards() {
+    return fetch(`${this.baseUrl}/cards`, {
+      headers: this.headers,
+    }).then(this._checkResponse);
+  }
+  ///запрос информации о пользователе
+  userInfo() {
+    return fetch(`${this.baseUrl}/users/me`, {
+      headers: this.headers,
+    }).then(this._checkResponse);
+  }
+
+  ///отправка измененных данных пользователя
+  profileInfoChanging(name, work) {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({
+        name: name,
+        about: work,
+      }),
+    }).then(this._checkResponse);
+  }
+
+  ///отправка новой карточки на сервер
+  newCard(cardName, linkUrl) {
+    return fetch(`${this.baseUrl}/cards`, {
+      method: "POST",
+      headers: this.headers,
+      body: JSON.stringify({
+        name: cardName,
+        link: linkUrl,
+      }),
+    }).then(this._checkResponse);
+  }
+
+  /// запрос на обновление аватарки
+  avatarRefreshing(linkData) {
+    return fetch(`${this.baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this.headers,
+      body: JSON.stringify({
+        avatar: linkData,
+      }),
+    }).then(this._checkResponse);
+  }
+
+  _checkResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    // если ошибка, отклоняем промис
     return Promise.reject(`Ошибка: ${res.status}`);
   }
-  return res.json();
 }
-
-export const getInitialProfile = () => {
-  return fetch(`${config.baseUrl}/users/me`, {
-    headers: config.headers,
-  }).then(getResponseData);
-};
-
-export const getInitialCards = () => {
-  return fetch(`${config.baseUrl}/cards `, {
-    headers: config.headers,
-  }).then(getResponseData);
-};
-
-export const setUserInfo = (name, about) => {
-  return fetch(`${config.baseUrl}/users/me`, {
-    method: "PATCH",
-    headers: config.headers,
-    body: JSON.stringify({
-      name: name,
-      about: about,
-    }),
-  }).then(getResponseData);
-};
-
-export const createCard = (name, link) => {
-  return fetch(`${config.baseUrl}/cards`, {
-    method: "POST",
-    headers: config.headers,
-    body: JSON.stringify({
-      name: name,
-      link: link,
-    }),
-  }).then(getResponseData);
-};
-
-export const deleteCard = (cardId) => {
-  return fetch(`${config.baseUrl}/cards/${cardId}`, {
-    method: "DELETE",
-    headers: config.headers,
-  }).then(getResponseData);
-};
-
-export const like = (cardId) => {
-  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
-    method: "PUT",
-    headers: config.headers,
-  }).then(getResponseData);
-};
-
-export const dislike = (cardId) => {
-  return fetch(`${config.baseUrl}/cards/likes/${cardId}`, {
-    method: "DELETE",
-    headers: config.headers,
-  }).then(getResponseData);
-};
-
-export const changeAvatar = (link) => {
-  return fetch(`${config.baseUrl}/users/me/avatar`, {
-    method: "PATCH",
-    headers: config.headers,
-    body: JSON.stringify({
-      avatar: link,
-    }),
-  }).then(getResponseData);
-};
