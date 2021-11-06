@@ -115,8 +115,8 @@ const popupFormUser = new PopupWithForm(".popup-profile", (inputList) => {
     .profileInfoChanging(inputList.username, inputList.userwork)
     .then((res) => {
       userInfo.setUserInfo({
-        userName: inputList.username,
-        userDescription: inputList.userwork,
+        userName: res.name,
+        userDescription: res.about,
       });
       popupFormUser.close();
     })
@@ -152,7 +152,7 @@ const popupFormAvatar = new PopupWithForm(".popup-avatar", (inputList) => {
   popupFormAvatar.loadingDisplaing(true);
   api
     .avatarRefreshing(inputList.linkname)
-    .then((res) => {
+    .then(() => {
       userInfo.setUserInfo({ userAvatar: inputList.linkname });
       popupFormAvatar.close();
     })
