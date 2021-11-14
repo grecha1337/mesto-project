@@ -8,7 +8,8 @@ export const objectForm = {
     inputSelector: '.popup__input',
     submitButtonSelector: '.popup__button',
     inactiveButtonClass: 'popup__button_disabled',
-    inputErrorClass: 'popup__input_type_error'
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
 };
 export const profileObject = {
     userNameSelector: '.profile__text-name',
