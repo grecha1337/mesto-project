@@ -1,86 +1,99 @@
-export default class Api {
-  constructor(options) {
-    this.baseUrl = options.baseUrl;
-    this.headers = options.headers;
+/**
+ * создаем класс Api
+ */
+ export default class Api {
+  constructor(config) {
+      this._baseUrl = config.baseUrl;
+      this._headers = config.headers;
+  }
+
+  //проверка ответа
+  _checkResponse(res) {
+      if (res.ok) {
+          return res.json();
+      }
+      // если ошибка, отклоняем промис
+      return Promise.reject(`Ошибка: ${res.status}`);
   }
 
   ///запрос на проставление лайка карточке
-  likeAdding(id) {
-    return fetch(`${this.baseUrl}/cards/likes/${id}`, {
-      method: "PUT",
-      headers: this.headers,
-    }).then(this._checkResponse);
+  addLike(id) {
+      return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+              method: 'PUT',
+              headers: this._headers
+          })
+          .then(this._checkResponse);
   }
 
   ///запрос на удаление лайка у карточки
-  likeRemoving(id) {
-    return fetch(`${this.baseUrl}/cards/likes/${id}`, {
-      method: "DELETE",
-      headers: this.headers,
-    }).then(this._checkResponse);
+  removeLike = (id) => {
+      return fetch(`${this._baseUrl}/cards/likes/${id}`, {
+              method: 'DELETE',
+              headers: this._headers
+          })
+          .then(this._checkResponse);
   }
 
   ///запрос на удаление карточки
-  cardRemoving(id) {
-    return fetch(`${this.baseUrl}/cards/${id}`, {
-      method: "DELETE",
-      headers: this.headers,
-    }).then(this._checkResponse);
+  removeCard(id) {
+      return fetch(`${this._baseUrl}/cards/${id}`, {
+              method: 'DELETE',
+              headers: this._headers
+          })
+          .then(this._checkResponse);
   }
 
   ///запрос информации о карточках с сервера
   getInitialCards() {
-    return fetch(`${this.baseUrl}/cards`, {
-      headers: this.headers,
-    }).then(this._checkResponse);
+      return fetch(`${this._baseUrl}/cards`, {
+              headers: this._headers
+          })
+          .then(this._checkResponse);
   }
+
   ///запрос информации о пользователе
-  userInfo() {
-    return fetch(`${this.baseUrl}/users/me`, {
-      headers: this.headers,
-    }).then(this._checkResponse);
+  getUserInfo() {
+      return fetch(`${this._baseUrl}/users/me`, {
+              headers: this._headers
+          })
+          .then(this._checkResponse);
   }
 
   ///отправка измененных данных пользователя
-  profileInfoChanging(name, work) {
-    return fetch(`${this.baseUrl}/users/me`, {
-      method: "PATCH",
-      headers: this.headers,
-      body: JSON.stringify({
-        name: name,
-        about: work,
-      }),
-    }).then(this._checkResponse);
+  changeProfileInfo(name, work) {
+      return fetch(`${this._baseUrl}/users/me`, {
+              method: 'PATCH',
+              headers: this._headers,
+              body: JSON.stringify({
+                  name: name,
+                  about: work,
+              })
+          })
+          .then(this._checkResponse);
   }
 
   ///отправка новой карточки на сервер
-  newCard(cardName, linkUrl) {
-    return fetch(`${this.baseUrl}/cards`, {
-      method: "POST",
-      headers: this.headers,
-      body: JSON.stringify({
-        name: cardName,
-        link: linkUrl,
-      }),
-    }).then(this._checkResponse);
+  pushNewCard(cardName, linkUrl) {
+      return fetch(`${this._baseUrl}/cards`, {
+              method: 'POST',
+              headers: this._headers,
+              body: JSON.stringify({
+                  name: cardName,
+                  link: linkUrl
+              })
+          })
+          .then(this._checkResponse);
   }
 
   /// запрос на обновление аватарки
-  avatarRefreshing(linkData) {
-    return fetch(`${this.baseUrl}/users/me/avatar`, {
-      method: "PATCH",
-      headers: this.headers,
-      body: JSON.stringify({
-        avatar: linkData,
-      }),
-    }).then(this._checkResponse);
-  }
-
-  _checkResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    // если ошибка, отклоняем промис
-    return Promise.reject(`Ошибка: ${res.status}`);
-  }
-}
+  refreshAvatar(linkData) {
+      return fetch(`${this._baseUrl}/users/me/avatar`, {
+              method: 'PATCH',
+              headers: this._headers,
+              body: JSON.stringify({
+                  avatar: linkData
+              })
+          })
+          .then(this._checkResponse);
+  };
+};

@@ -1,26 +1,20 @@
-// import Popup from "./Popup.js";
+import Popup from "./Popup.js";
 
-// export default class PopupWithConfirm extends Popup {
-//   constructor(selector, handleFormSubmit) {
-//     super(selector);
-//     this._formElement = this._popupElement.querySelector(".popup__form");
-//     this._buttonSubmit = this._popupElement.querySelector(".popup__button");
-//     this._handleFormSubmit = handleFormSubmit;
-//   }
+export default class PopupWithConfirm extends Popup {
+    constructor({ selector, buttonSelector }) {
+        super(selector);
+        this._formElement = this._popupElement.querySelector(".popup__form");
+        this._buttonSubmit = this._popupElement.querySelector(buttonSelector);
+    }
 
-//   setEventListeners() {
-//     super.setEventListeners();
-//     this._buttonSubmit.addEventListener("click", (e) => {
-//       this._handleFormSubmit(e);
-//     });
-//   }
+    setSubmitAction(sendRequest) {
+        this._sendRequest = sendRequest;
+    }
 
-//   close() {
-//     super.close();
-//   }
-
-//   open(cardId) {
-//     super.open();
-//     this._buttonSubmit.setAttribute('id', cardId);
-//   }
-// }
+    setEventListeners() {
+        super.setEventListeners();
+        this._buttonSubmit.addEventListener("click", () => {
+            this._sendRequest();
+        });
+    }
+}

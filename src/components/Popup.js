@@ -1,38 +1,40 @@
 export default class Popup {
   constructor(selector) {
-    this._popupElement = document.querySelector(selector);
+      this._popupElement = document.querySelector(selector);
   }
 
-  open() {
-    this._popupElement.classList.add("popup_opened");
-    document.addEventListener('keyup', this._handleEscClose);
+  ///метод открытия попапа
+  openPopup() {
+      this._popupElement.classList.add("popup_opened");
+      document.addEventListener("keyup", this._handleEscClose);
   }
 
-  close() {
-    this._popupElement.classList.remove("popup_opened");
-    document.removeEventListener("keyup", this._handleEscClose);
+  ///метод закрытия попапов
+  closePopup() {
+      this._popupElement.classList.remove("popup_opened");
+      document.removeEventListener("keyup", this._handleEscClose);
   }
 
-  _handleEscClose = (e) => {
-    console.log(e)
-    if (e.key === "Escape") {
-      this.close();
-    }
-  };
+  ///закрытие попапа нажатием на черный фон
+  _closePopupByClickOverlay(evt) {
+      if (
+          evt.target.classList.contains("popup__close") ||
+          evt.target.classList.contains("popup")
+      ) {
+          this.closePopup();
+      }
+  }
 
-  _closePopupOnClickOverlay = (e) => {
-    if (
-      e.target.classList.contains("popup") ||
-      e.target.classList.contains("popup__btn-close")
-    ) {
-      this.close();
-    }
+  ///метод наложения слушателя для закрытия через escape
+  _handleEscClose = (evt) => {
+      if (evt.key === "Escape") {
+          this.closePopup();
+      }
   };
 
   setEventListeners() {
-    this._popupElement.addEventListener(
-      "mousedown",
-      this._closePopupOnClickOverlay
-    );
+      this._popupElement.addEventListener("mousedown", (evt) => {
+          this._closePopupByClickOverlay(evt);
+      });
   }
 }

@@ -34,13 +34,13 @@
           <h2 class="popup__title">Редактировать профиль</h2>
           <fieldset class="popup__fieldset">
             <label class="popup__field">
-              <input class="popup__input popup__name-profile" id="name" name="username" required minlength="3" maxlength="40"
-                placeholder="Имя" type="text">
+              <input class="popup__input popup__name-profile" id="name" name="username" required minlength="3"
+                maxlength="40" placeholder="Имя" type="text">
               <span class="popup__error name-error"></span>
             </label>
             <label class="popup__field">
-              <input class="popup__input popup__about-profile" id="prof" name="userwork" required minlength="3" maxlength="200"
-                placeholder="Профессиональная деятельность" type="text">
+              <input class="popup__input popup__about-profile" id="prof" name="userwork" required minlength="3"
+                maxlength="200" placeholder="Профессиональная деятельность" type="text">
               <span class="popup__error prof-error"></span>
             </label>
             <button class="popup__button popup__button-profile button" type="submit">Сохранить</button>
@@ -92,12 +92,11 @@
         <p class="popup-image__name"></p>
       </div>
     </div>
-    <div class="popup popup__delete-confirm">
-      <div id="conteiner" class="popup__container">
+    <div class="popup popup-confirm">
+      <div class="popup__container">
         <button class="popup__btn-close button" type="button"></button>
         <h2 class="popup__confirm-text-element">Вы уверены?</h2>
-        <button id="confirm-button" type="click" aria-label="кнопка согласия"
-          class="popup__button popup__confirm-button">Да</button>
+        <button type="click" aria-label="кнопка согласия" class="popup__button popup__confirm-button">Да</button>
       </div>
     </div>
   </main>
