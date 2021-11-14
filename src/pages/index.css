@@ -50,3 +50,5 @@
 @import url(../blocks/popup-image/__image/popup-image__imgae.css);
 @import url(../blocks/popup-image/__name/popup-image__name.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
+
+@import url(../blocks/popup/__confirm-text-element/popup__confirm-text-element.css);
