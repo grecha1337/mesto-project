@@ -18,7 +18,7 @@ export default class Popup {
   ///закрытие попапа нажатием на черный фон
   _closePopupByClickOverlay(evt) {
       if (
-          evt.target.classList.contains("popup__close") ||
+          evt.target.classList.contains("popup__btn-close") ||
           evt.target.classList.contains("popup")
       ) {
           this.closePopup();
